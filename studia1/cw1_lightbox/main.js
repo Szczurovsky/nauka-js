@@ -33,3 +33,11 @@ function showLightbox(ev) {
     // pokaż lightbox
     lightbox.classList.add('visible');
 }
+
+const hide = document.querySelector('.lightbox');
+hide.addEventListener('click', hideLightbox);
+
+function hideLightbox() {
+    const lightbox = document.querySelector('.lightbox');
+    lightbox.classList.add('hide');
+}
