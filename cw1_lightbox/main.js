@@ -35,17 +35,18 @@ function showLightbox(ev) {
     // pokaż lightbox
     lightbox.classList.add("visible");
     prev.addEventListener("click",prevEl);
+
 }
 
 
 hide.addEventListener("click", hideLightbox);
-prev.addEventListener("click", prevElement);
+prev.addEventListener("click", stop);
 function hideLightbox() {
     const lightbox = document.querySelector(".lightbox");
     lightbox.classList.add("hide");
     lightbox.classList.remove("visible");
     lightbox.classList.remove("hide");
 }
-function prevElement(){
-    console.log("sssss")
+function stop(ev){
+    ev.stopPropagation();    
 }

@@ -9,25 +9,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
+    transform: scale(0);
 }
 
 .visible {
-    display: flex;
+    transform: scale(1);
 }
 
 .hide {
-    
+    transform: scale(0);
 }
 
 .lightbox img {
     max-width: 60%;
     max-height: 100%;
+
 }
 
 img {
     width: 300px;
     height: 300px;
+    
 }
 .lightbox .prev,.next{
     position:relative;
