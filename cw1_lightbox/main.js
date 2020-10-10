@@ -12,7 +12,9 @@
 
 
 // pobierz wszystkie grafiki z .gallery
+const prev = document.querySelector(".prev");
 const imgs = document.querySelectorAll(".gallery img");
+const hide = document.querySelector(".lightbox:not(img)");
 for (let index = 0; index < imgs.length; index++) {
     const img = imgs[index];
     img.addEventListener("click", showLightbox);
@@ -20,7 +22,7 @@ for (let index = 0; index < imgs.length; index++) {
 
 function showLightbox(ev) {
     // pobranie poprzedniego elementu
-    // const prevEl = ev.target.prevElementSibling;
+    const prevEl = ev.target.prevElementSibling;
     // const nextEl = ev.target.nextElementSibling;
     console.log(ev);
     // pobierz elementy z html-a
@@ -32,4 +34,18 @@ function showLightbox(ev) {
     img.src = imgUrl;
     // pokaż lightbox
     lightbox.classList.add("visible");
+    prev.addEventListener("click",prevEl);
+}
+
+
+hide.addEventListener("click", hideLightbox);
+prev.addEventListener("click", prevElement);
+function hideLightbox() {
+    const lightbox = document.querySelector(".lightbox");
+    lightbox.classList.add("hide");
+    lightbox.classList.remove("visible");
+    lightbox.classList.remove("hide");
+}
+function prevElement(){
+    console.log("sssss")
 }
