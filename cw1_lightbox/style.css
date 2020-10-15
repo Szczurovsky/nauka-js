@@ -1,8 +1,11 @@
+body{
+    background-color:rgb(255, 255, 255);
+}
 .gallery{
     display:flex;
     height: 100vh;
     /* flex-direction: column; */
-    flex-wrap:nowrap;
+    flex-wrap:wrap-reverse;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -21,8 +24,7 @@
     align-items: center;
     transform: scale(0);
     transition: all 0.8s cubic-bezier(0.095, 0.52, 0.225, 1);
-    z-index: 1
-    ;
+    z-index: 1;
 }
 
 .visible {
