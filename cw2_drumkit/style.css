@@ -32,6 +32,9 @@ z-index: 1;
 button#stopBtn{
     right:0;
 }
+button#playAllBtn{
+    right:200px;
+}
 p{
     color:white;
     font-size: 30px;
