@@ -9,6 +9,13 @@ const channel = [];
 const channel1 = [];
 const channel2 = [];
 const channel3 = [];
+const channel4 = [];
+const channel5 = [];
+const channel6 = [];
+const channel7 = [];
+const channel8 = [];
+const channel9 = [];
+const channelsArray = [channel, channel1,channel2,channel3,channel4,channel5,channel6,channel7,channel8,channel9]
 const recordStart = Date.now();
 function onKeyPress(ev) {
     let sound;
@@ -112,40 +119,180 @@ function playChannel1() {
     }
 }
 
-let channels = channel.concat(channel1,channel2);
+//let channels = channel.concat(channel1,channel2);
 function playChannels() {
     
-    for (let index = 0; index < channel.length; index++) {
+    // for (let index = 0; index < channel.length; index++) {
 
-        {
-            const soundObject = channel[index];
-            setTimeout(
-                () => {
-                    playSound(soundObject.sound);
-                },
-                soundObject.time
+    //     {
+    //         const soundObject = channel[index];
+    //         setTimeout(
+    //             () => {
+    //                 playSound(soundObject.sound);
+    //             },
+    //             soundObject.time
                
-            );
+    //         );
            
-        }
+    //     }
 
+    // }
+    for (let i = 0; i < 9; i++) {
+        let array= channelsArray[i];
+        for (let index = 0; index < array.length; index++) {
+    
+                    {
+                        const soundObject = array[index];
+                        setTimeout(
+                            () => {
+                                playSound(soundObject.sound);
+                            },
+                            soundObject.time
+                           
+                        );
+                       
+                    }
+            
+                }
+        
     }
-    for (let index = 0; index < channel1.length; index++) {
+//     for (let index = 0; index < channel1.length; index++) {
 
-        {
-            const soundObject = channel1[index];
-            setTimeout(
-                () => {
-                    playSound(soundObject.sound);
-                },
-                soundObject.time
+//         {
+//             const soundObject = channel1[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
                
-            );
+//             );
            
-        }
+//         }
 
-    }
+//     }
+//     for (let index = 0; index < channel2.length; index++) {
 
+//         {
+//             const soundObject = channel2[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel3.length; index++) {
+
+//         {
+//             const soundObject = channel3[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel4.length; index++) {
+
+//         {
+//             const soundObject = channel4[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel5.length; index++) {
+
+//         {
+//             const soundObject = channel5[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel6.length; index++) {
+
+//         {
+//             const soundObject = channel6[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel7.length; index++) {
+
+//         {
+//             const soundObject = 7[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel8.length; index++) {
+
+//         {
+//             const soundObject = channel8[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+//     for (let index = 0; index < channel9.length; index++) {
+
+//         {
+//             const soundObject = channel9[index];
+//             setTimeout(
+//                 () => {
+//                     playSound(soundObject.sound);
+//                 },
+//                 soundObject.time
+               
+//             );
+           
+//         }
+
+//     }
+
+// }
 }
 function playSound(soundName) {
     const sound = document.querySelector("#" + soundName);
