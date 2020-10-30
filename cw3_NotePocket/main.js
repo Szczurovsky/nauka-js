@@ -2,7 +2,7 @@ const localStorageNotesKey = "notes";
 let notes = [];
 
 document.querySelector("#noteAdd").addEventListener("click", onNewNote);
-
+document.querySelector("#noteAdd").addEventListener("click", setItems);
 function onNewNote() {
     window.title = document.querySelector("#noteTitle").value;
     window.content = document.querySelector("#noteContent").value;
@@ -14,17 +14,15 @@ function onNewNote() {
         pinned: false,
         createDate: new Date()
     };
+
     notes.push(note);
-    localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
-    const notesFromStorage = JSON.parse(localStorage.getItem(localStorageNotesKey));
-    notes = notesFromStorage.map( note => {
-        note.createDate = new Date(note.createDate);
-        return note;
-    }
-    );
-    window.location.reload();
-    
 }
+
+function setItems(){
+    localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
+    window.location.reload();
+}
+
 // nowa notatka
 
 
