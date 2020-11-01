@@ -69,9 +69,7 @@ for (let note of notes) {
     //     idNumber++;
     // }
 }
-document.querySelector("main section").id=1;
-document.querySelector("main section~section").id=2;
-let idNumber = 1;
+
 // document.getElementById(idNumber).addEventListener("click",() =>{
 //     const main = document.querySelector("main");
 //     const usun = document.getElementById("1");
@@ -92,12 +90,22 @@ function removeChild(ev){
     
     const target = ev.currentTarget;
     const parent = target.parentElement;
+    const parentParent = parent.parentElement;
     const main = document.querySelector("main");
-    localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
-    notes = localStorage.getItem(localStorageNotesKey);
-    console.log(parent);
+    let index = Array.prototype.indexOf.call(parentParent.children,parent);
+    removeLocalStorage(index);
     main.removeChild(parent);
-   // window.location.reload();
+    window.location.reload();
+    // localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
+    // notes = JSON.parse(localStorage.getItem(localStorageNotesKey));
+    console.log(index);
+    console.log(parent);
+    console.log(parentParent);
+    // window.location.reload();
+}
+function removeLocalStorage(index){
+    notesFromStorage.splice(index,1);
+    localStorage.setItem(localStorageNotesKey, JSON.stringify(notesFromStorage));
 }
 // buttonsDelete[idNumber].addEventListener("click",removeChild);
 // function removeChild(){
