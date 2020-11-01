@@ -1,5 +1,11 @@
 const localStorageNotesKey = "notes";
-
+let note = {
+    title: window.title,
+    content: window.content,
+    colour: "#ff0000",
+    pinned: false,
+    createDate: new Date()
+};
 let notes = [];
 
 document.querySelector("#noteAdd").addEventListener("click", onNewNote);
@@ -7,7 +13,6 @@ document.querySelector("#noteAdd").addEventListener("click", setItems);
 function onNewNote() {
     window.title = document.querySelector("#noteTitle").value;
     window.content = document.querySelector("#noteContent").value;
-    
     const note = {
         title: window.title,
         content: window.content,
@@ -47,6 +52,7 @@ for (let note of notes) {
     const htmlContent = document.createElement("p");
     const htmlDate = document.createElement("h4");
 
+    htmlContent.contentEditable="true";
     htmlSection.classList.add("note");
     htmlTitle.innerHTML = note.title;
     htmlContent.innerHTML = note.content;
@@ -62,32 +68,17 @@ for (let note of notes) {
     const htmlRemove = document.createElement("button");
     htmlRemove.classList.add("remove");
     htmlSection.appendChild(htmlRemove);
-    // for (let i = 0; i < notes.length; i++) {
-    //     // const element = notes[i];
-    //     let idNumber = 1;
-    //     htmlSection.id=idNumber;
-    //     idNumber++;
-    // }
+
+    const htmlEdit = document.createElement("button");
+    htmlEdit.classList.add("edit");
+    htmlSection.appendChild(htmlEdit);
 }
 
-// document.getElementById(idNumber).addEventListener("click",() =>{
-//     const main = document.querySelector("main");
-//     const usun = document.getElementById("1");
-
-//     let tabliczka = [usun];
-//     // main.removeChild(usun);
-//     localStorage.removeItem(tabliczka, JSON.stringify(notes));
-//     // localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
-//     console.log(localStorageNoteKey);
-//     window.location.reload();
-// });
-
-var buttonsDelete = document.querySelectorAll(".remove");
+let buttonsDelete = document.querySelectorAll(".remove");
 for (let index = 0; index < buttonsDelete.length; index++) {
     buttonsDelete[index].addEventListener("click",removeChild);   
 }
-function removeChild(ev){
-    
+function removeChild(ev){   
     const target = ev.currentTarget;
     const parent = target.parentElement;
     const parentParent = parent.parentElement;
@@ -96,36 +87,66 @@ function removeChild(ev){
     removeLocalStorage(index);
     main.removeChild(parent);
     window.location.reload();
-    // localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
-    // notes = JSON.parse(localStorage.getItem(localStorageNotesKey));
-    console.log(index);
-    console.log(parent);
-    console.log(parentParent);
-    // window.location.reload();
 }
 function removeLocalStorage(index){
     notesFromStorage.splice(index,1);
     localStorage.setItem(localStorageNotesKey, JSON.stringify(notesFromStorage));
 }
-// buttonsDelete[idNumber].addEventListener("click",removeChild);
-// function removeChild(){
-//     const main = document.querySelector("main");
-//     const usun = document.getElementById("1");
-//     main.removeChild(usun);
-// }
-// for (let i = 0; i < notes.length; i++) {
-//     const element = notes[i];
-//     let idNumber = 1;
-//     const noteClass = document.querySelector("section");
-//     noteClass.id="#"+idNumber;
-//     idNumber++;
-// }
-// usuwanie elementów
-// main.removeChild()
 
-// notatka:
-// Tytuł
-// Treść
-// Kolor notatki
-// Możliwość przypięcia do góry na liście notatek
-// Datę utworzenia
+
+// ****************************
+let buttonsEdit = document.querySelectorAll(".edit");
+for (let index = 0; index < buttonsEdit.length; index++) {
+    buttonsEdit[index].addEventListener("click",note_edit_interface);
+    
+}
+
+function note_edit_interface(ev){
+    const textbox = document.createElement("textarea");
+    const buttonOk = document.createElement("button");
+    buttonOk.classList.add("ok");
+    textbox.classList.add("text");
+    const target = ev.currentTarget;
+    const parent = target.parentElement;
+    const parentParent = parent.parentElement;
+    parent.appendChild(textbox);
+    parent.appendChild(buttonOk);
+    console.log(parent);
+    document.querySelector(".ok").addEventListener("click",note_edit);
+    function note_edit(){
+        let index = Array.prototype.indexOf.call(parentParent.children,parent);
+        let existing = localStorage.getItem("notes");
+        let text1 = document.querySelector(".text").value;
+        existing = existing ? JSON.parse(existing):{};
+        existing[index].content = text1;
+        console.log(existing[index].content);
+        // const htmlContent = document.querySelector("p");
+        localStorage.setItem(localStorageNotesKey, JSON.stringify(existing));
+        window.location.reload();
+        // localStorage.setItem(localStorageNotesKey[index],"ssssss");
+        // htmlContent.innerHTML = text1;
+    }
+}
+
+
+// htmlContent.contentEditable="true";
+//     htmlSection.classList.add("note");
+//     htmlTitle.innerHTML = note.title;
+//     htmlContent.innerHTML = note.content;
+//     htmlDate.innerHTML = note.createDate.toLocaleString();
+
+
+// function onNewNote() {
+//     window.title = document.querySelector("#noteTitle").value;
+//     window.content = document.querySelector("#noteContent").value;
+    
+//     const note = {
+//         title: window.title,
+//         content: window.content,
+//         colour: "#ff0000",
+//         pinned: false,
+//         createDate: new Date()
+//     };
+
+//     notes.push(note);
+// }
