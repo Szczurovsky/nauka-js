@@ -1,28 +1,54 @@
 const localStorageNotesKey = "notes";
-let note = {
-    title: window.title,
-    content: window.content,
-    colour: "#ff0000",
-    pinned: false,
-    createDate: new Date()
-};
 let notes = [];
+
+
+// let colors = document.querySelector(".red");
+// let styles = window.getComputedStyle(colors);
+// let color = styles.getPropertyValue("background-color");
+
 
 document.querySelector("#noteAdd").addEventListener("click", onNewNote);
 document.querySelector("#noteAdd").addEventListener("click", setItems);
+// document.querySelector(".colors button").addEventListener("click", set_Color);
+
+function set_Color(ev){
+    const target = ev.currentTarget;
+    let styles = window.getComputedStyle(target);
+    window.color = styles.getPropertyValue("background-color");
+    console.log(target);
+}
 function onNewNote() {
     window.title = document.querySelector("#noteTitle").value;
     window.content = document.querySelector("#noteContent").value;
+
     const note = {
         title: window.title,
         content: window.content,
-        colour: "#ff0000",
+        color: window.color,
         pinned: false,
         createDate: new Date()
     };
 
+
     notes.push(note);
 }
+
+// let index = Array.prototype.indexOf.call(parentParent.children,parent);
+
+
+
+// let existing = localStorage.getItem("notes");
+//         let text1 = document.querySelector(".text").value;
+//         //parsowanie jej do tablicy
+//         existing = existing ? JSON.parse(existing):{};
+//         existing[index].content = text1;
+//         console.log(existing[index].content);
+
+const colorsButton = document.querySelectorAll(".colors button");
+for (let index = 0; index < colorsButton.length; index++) {
+    colorsButton[index].addEventListener("click", set_Color); 
+}
+
 
 function setItems(){
     localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
@@ -52,7 +78,6 @@ for (let note of notes) {
     const htmlContent = document.createElement("p");
     const htmlDate = document.createElement("h4");
 
-    htmlContent.contentEditable="true";
     htmlSection.classList.add("note");
     htmlTitle.innerHTML = note.title;
     htmlContent.innerHTML = note.content;
@@ -102,6 +127,7 @@ for (let index = 0; index < buttonsEdit.length; index++) {
 }
 
 function note_edit_interface(ev){
+    //dodanie potrzebnych przyciskow i ich klas
     const textbox = document.createElement("textarea");
     const buttonOk = document.createElement("button");
     buttonOk.classList.add("ok");
@@ -114,39 +140,28 @@ function note_edit_interface(ev){
     console.log(parent);
     document.querySelector(".ok").addEventListener("click",note_edit);
     function note_edit(){
+        //nasluchiwanie indexu
         let index = Array.prototype.indexOf.call(parentParent.children,parent);
+        //sciagniecie aktualnej localstorage
         let existing = localStorage.getItem("notes");
         let text1 = document.querySelector(".text").value;
+        //parsowanie jej do tablicy
         existing = existing ? JSON.parse(existing):{};
         existing[index].content = text1;
         console.log(existing[index].content);
-        // const htmlContent = document.querySelector("p");
+        // zapis w tablicy
         localStorage.setItem(localStorageNotesKey, JSON.stringify(existing));
         window.location.reload();
-        // localStorage.setItem(localStorageNotesKey[index],"ssssss");
-        // htmlContent.innerHTML = text1;
     }
 }
 
+let noteColor = localStorage.getItem("notes");
+noteColor = noteColor ? JSON.parse(noteColor):{};
+const test = document.querySelectorAll(".note");
+for (let index = 0; index < noteColor.length; index++) {
 
-// htmlContent.contentEditable="true";
-//     htmlSection.classList.add("note");
-//     htmlTitle.innerHTML = note.title;
-//     htmlContent.innerHTML = note.content;
-//     htmlDate.innerHTML = note.createDate.toLocaleString();
-
-
-// function onNewNote() {
-//     window.title = document.querySelector("#noteTitle").value;
-//     window.content = document.querySelector("#noteContent").value;
-    
-//     const note = {
-//         title: window.title,
-//         content: window.content,
-//         colour: "#ff0000",
-//         pinned: false,
-//         createDate: new Date()
-//     };
-
-//     notes.push(note);
-// }
+    test[index].style.background = noteColor[index].color;
+    // let noteColors = window.getComputedStyle(noteProperty);
+    // let noteColor = noteColors.getComputedStyle("background");
+    console.log(noteColor[index].color);
+}
