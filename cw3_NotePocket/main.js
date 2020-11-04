@@ -92,11 +92,21 @@ for (let note of notes) {
 
     const htmlRemove = document.createElement("button");
     htmlRemove.classList.add("remove");
+    htmlRemove.innerHTML="Usuń";
     htmlSection.appendChild(htmlRemove);
 
     const htmlEdit = document.createElement("button");
     htmlEdit.classList.add("edit");
+    htmlEdit.innerHTML="Edycja";
     htmlSection.appendChild(htmlEdit);
+
+    const htmlCheck = document.createElement("button");
+    htmlCheck.classList.add("check");
+    htmlSection.appendChild(htmlCheck);
+    // const htmlCheck = document.createElement("INPUT");
+    // htmlCheck.setAttribute("type","checkbox");
+    // htmlCheck.classList.add("checkbox");
+    // htmlSection.appendChild(htmlCheck);
 }
 
 let buttonsDelete = document.querySelectorAll(".remove");
@@ -131,7 +141,11 @@ function note_edit_interface(ev){
     const textbox = document.createElement("textarea");
     const buttonOk = document.createElement("button");
     buttonOk.classList.add("ok");
+    buttonOk.innerHTML="Ok";
     textbox.classList.add("text");
+    textbox.cols="25";
+    textbox.rows="5";
+    textbox.placeholder="Co chcesz zmienić?"
     const target = ev.currentTarget;
     const parent = target.parentElement;
     const parentParent = parent.parentElement;
@@ -155,13 +169,52 @@ function note_edit_interface(ev){
     }
 }
 
-let noteColor = localStorage.getItem("notes");
-noteColor = noteColor ? JSON.parse(noteColor):{};
+let noteStorage = localStorage.getItem("notes");
+noteStorage = noteStorage ? JSON.parse(noteStorage):{};
 const test = document.querySelectorAll(".note");
-for (let index = 0; index < noteColor.length; index++) {
+for (let index = 0; index < noteStorage.length; index++) {
 
-    test[index].style.background = noteColor[index].color;
-    // let noteColors = window.getComputedStyle(noteProperty);
-    // let noteColor = noteColors.getComputedStyle("background");
-    console.log(noteColor[index].color);
+    test[index].style.background = noteStorage[index].color;
+    console.log(noteStorage[index].color);
 }
+let buttonsCheck = document.querySelectorAll(".check");
+for (let index = 0; index < buttonsCheck.length; index++) {
+    buttonsCheck[index].addEventListener("click",Pin);
+    
+}
+function Pin(){
+    
+    if(noteStorage[1].pinned == false){
+        noteStorage[1].pinned = true;
+    }
+    else{
+        noteStorage[1].pinned = false;
+    }
+   
+}
+// const checkboxElement = document.querySelector(".checkbox");
+// if(checkboxElement.checked){
+//     console.log("check dziala");
+// }
+
+// const note = {
+//     title: window.title,
+//     content: window.content,
+//     color: window.color,
+//     pinned: false,
+//     createDate: new Date()
+// };
+
+// function myFunction() {
+//     // Get the checkbox
+//     var checkBox = document.getElementById("myCheck");
+//     // Get the output text
+//     var text = document.getElementById("text");
+  
+//     // If the checkbox is checked, display the output text
+//     if (checkBox.checked == true){
+//       text.style.display = "block";
+//     } else {
+//       text.style.display = "none";
+//     }
+//   }

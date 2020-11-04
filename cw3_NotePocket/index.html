@@ -4,20 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <title>NoteKeep</title>
   </head>
   <body>
     <section class="addNote">
-      Title <input type="text" name="" id="noteTitle" /><br />
-      Content <textarea id="noteContent"></textarea><br />
-      <button id="noteAdd">Add</button>
+      <div class="notes">
+      <p>Title</p> <input type="text" name="" id="noteTitle" /><br />
+      <p>Content</p>  <textarea id="noteContent"></textarea><br />
+      
       <div class="colors">
         <button id="red" class="red"></button>
         <button class="green"></button>
         <button class="blue"></button>
         <button class="default"></button></div>
+      
+      <button id="noteAdd">Add</button>
+    </div>
     </section>
+   
     <main>
+      <!-- <i class="fas fa-thumbtack" id="pin"></i> -->
       <!-- 
         
      -->
