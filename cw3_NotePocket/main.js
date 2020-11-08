@@ -2,14 +2,11 @@ const localStorageNotesKey = "notes";
 let notes = [];
 
 
-// let colors = document.querySelector(".red");
-// let styles = window.getComputedStyle(colors);
-// let color = styles.getPropertyValue("background-color");
+
 
 
 document.querySelector("#noteAdd").addEventListener("click", onNewNote);
 document.querySelector("#noteAdd").addEventListener("click", setItems);
-// document.querySelector(".colors button").addEventListener("click", set_Color);
 
 function set_Color(ev){
     const target = ev.currentTarget;
@@ -33,17 +30,6 @@ function onNewNote() {
     notes.push(note);
 }
 
-// let index = Array.prototype.indexOf.call(parentParent.children,parent);
-
-
-
-// let existing = localStorage.getItem("notes");
-//         let text1 = document.querySelector(".text").value;
-//         //parsowanie jej do tablicy
-//         existing = existing ? JSON.parse(existing):{};
-//         existing[index].content = text1;
-//         console.log(existing[index].content);
-
 const colorsButton = document.querySelectorAll(".colors button");
 for (let index = 0; index < colorsButton.length; index++) {
     colorsButton[index].addEventListener("click", set_Color); 
@@ -55,22 +41,12 @@ function setItems(){
     window.location.reload();
 }
 
-// nowa notatka
-
-
-// notatka dodana do tablicy notatek
-
-// tablica zapisana w localStorage
-// localStorage.setItem(localStorageNotesKey, JSON.stringify(notes));
-
-// odczytanie tablicy notatek z localStorage
 const notesFromStorage = JSON.parse(localStorage.getItem(localStorageNotesKey));
 notes = notesFromStorage.map( note => {
     note.createDate = new Date(note.createDate);
     return note;
 });
 
-// zmiana html-a z poziomu js-a - sposób obiektowy
 for (let note of notes) {
     
     const htmlSection = document.createElement("section");
@@ -103,10 +79,6 @@ for (let note of notes) {
     const htmlCheck = document.createElement("button");
     htmlCheck.classList.add("check");
     htmlSection.appendChild(htmlCheck);
-    // const htmlCheck = document.createElement("INPUT");
-    // htmlCheck.setAttribute("type","checkbox");
-    // htmlCheck.classList.add("checkbox");
-    // htmlSection.appendChild(htmlCheck);
 }
 
 let buttonsDelete = document.querySelectorAll(".remove");
@@ -145,7 +117,7 @@ function note_edit_interface(ev){
     textbox.classList.add("text");
     textbox.cols="25";
     textbox.rows="5";
-    textbox.placeholder="Co chcesz zmienić?"
+    textbox.placeholder="Co chcesz zmienić?";
     const target = ev.currentTarget;
     const parent = target.parentElement;
     const parentParent = parent.parentElement;
@@ -179,8 +151,7 @@ for (let index = 0; index < noteStorage.length; index++) {
 }
 let buttonsCheck = document.querySelectorAll(".check");
 for (let index = 0; index < buttonsCheck.length; index++) {
-    buttonsCheck[index].addEventListener("click",Pin);
-    
+    buttonsCheck[index].addEventListener("click",Pin);  
 }
 function Pin(){
     
@@ -192,29 +163,3 @@ function Pin(){
     }
    
 }
-// const checkboxElement = document.querySelector(".checkbox");
-// if(checkboxElement.checked){
-//     console.log("check dziala");
-// }
-
-// const note = {
-//     title: window.title,
-//     content: window.content,
-//     color: window.color,
-//     pinned: false,
-//     createDate: new Date()
-// };
-
-// function myFunction() {
-//     // Get the checkbox
-//     var checkBox = document.getElementById("myCheck");
-//     // Get the output text
-//     var text = document.getElementById("text");
-  
-//     // If the checkbox is checked, display the output text
-//     if (checkBox.checked == true){
-//       text.style.display = "block";
-//     } else {
-//       text.style.display = "none";
-//     }
-//   }

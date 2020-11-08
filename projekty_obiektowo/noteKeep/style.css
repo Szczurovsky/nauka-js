@@ -1,0 +1,153 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+section.addNote{
+    margin:50px;
+
+    border:1px black solid;
+}
+main{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.note{
+    border:1px solid black;
+    margin:5px;
+    padding:5px;
+    text-align: center;   
+}
+
+
+
+
+
+
+html {
+  background: linear-gradient(rgb(104, 182, 226), rgb(245, 171, 171));
+
+    font: 14px sans-serif;
+    padding: 20px;
+    overflow-wrap: break-word;
+  }
+
+  .note {
+    background: rgb(212, 166, 166);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin: 26px auto 0;
+    min-width: 200px;
+    max-width: 20%;
+    min-height: 300px;
+    padding: 24px;
+    position: relative;
+    width: 80%;
+  }
+  .note:before, .note:after {
+    content: "";
+    height: 98%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+  .note:before {
+    background: #f59c9c;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    left: -5px;
+    top: 4px;
+    transform: rotate(-2.5deg);
+  }
+  .note:after {
+    background: #863030;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    right: -3px;
+    top: 1px;
+    transform: rotate(1.4deg);
+  }
+
+  div button{
+    width:20px;
+    height:20px;
+    border-radius: 90%;
+    border:1px solid white;
+  }
+  button.red{
+    background-color: rgb(255, 119, 119);
+  }
+  button.blue{
+    background-color: rgb(135, 166, 252);
+  }
+  button.green{
+    background-color: rgb(208, 255, 119);
+  }
+  button.remove{
+    background-color: rgb(196, 190, 190);
+    position:absolute;
+    bottom:0;
+    right:0;
+
+    width:50px;
+    height:20px;
+  }
+  button.edit{
+    width:50px;
+    height:30px;
+  }
+  button.ok{
+    display: block;
+    margin-left:80px;
+    width:30px;
+    height:30px;
+    /* background-color: mediumblue; */
+  }
+  button.check{
+    background-color: red;
+    position:absolute;
+    top:0;
+    left:0;
+    width: 10px;
+    height:10px;
+  }
+  .text{
+    column-span: 50px;
+  }
+ .addNote p{
+   margin-left:50px;
+ }
+ .notes {
+  background: rgb(212, 166, 166);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  margin: 26px auto 0;
+  min-width: 200px;
+  max-width: 20%;
+  min-height: 300px;
+  padding: 24px;
+  position: relative;
+  width: 80%;
+}
+.notes:before, .note:after {
+  content: "";
+  height: 98%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.notes:before {
+  background: #f59c9c;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  left: -5px;
+  top: 4px;
+  transform: rotate(-2.5deg);
+}
+.notes:after {
+  background: #863030;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  right: -3px;
+  top: 1px;
+  transform: rotate(1.4deg);
+}
+#noteAdd{
+  width:40px;
+
+}
