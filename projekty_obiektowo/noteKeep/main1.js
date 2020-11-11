@@ -15,29 +15,33 @@ class Notes {
         this.db = new LS();
         this.ui = new UI();
         this.notes = [];
-        // this.db.get();
-        // this.notes=[];
         this.notesFromStorage = JSON.parse(localStorage.getItem(this.db.notesKey));
+        // this.notesFromStorage = JSON.parse(localStorage.getItem(this.db.notesKey));
+        // this.notes = this.notesFromStorage.map(note => {
+        //     note.createDate = new Date(note.createDate);
+        //     return note;
+        // });
+    }
+    addNote(){
+        let id = this.notes.length + 1;
+        const n1 = new Note(id,window.titles,window.contents,true,"red");
+        this.notes.push(n1);
+        this.db.save(this.notes);
+    }
+    removeNote(id){
+        this.notesFromStorage.splice(id, 1);
+        localStorage.setItem(this.db.notesKey, JSON.stringify(this.notesFromStorage));    
+    }
+    getID(note){
+        return note.id;
+    }
+    notesMap(){
+        
         this.notes = this.notesFromStorage.map(note => {
             note.createDate = new Date(note.createDate);
             return note;
         });
     }
-    addNote(note){
-        this.notes.push(note);
-        this.db.save(this.notes);
-    }
-    removeNote(id){
-        this.notesFromStorage.splice(id, 1);
-        localStorage.setItem(this.db.notesKey, JSON.stringify(this.notesFromStorage));
-        return this.notes;
-    }
-    getID(note){
-        return note.id;
-    }
-    // getNotes(){
-        
-    // }
 }
 class LS {
     constructor(){
@@ -46,6 +50,7 @@ class LS {
     save(notes){
         localStorage.setItem(this.notesKey, JSON.stringify(notes));
         window.location.reload();
+        
     }
     // get(){
     //     const cos = localStorage.getItem(this.notesKey);
@@ -57,58 +62,53 @@ class UI {
     constuctor(){
         this.notesObj = document.querySelector("main");
     }
-    drawNote(){
+    drawNote(notes){
+        for(let note of notes){
+            const htmlSection = document.createElement("section");
+            const htmlTitle = document.createElement("h1");
+            const htmlContent = document.createElement("p");
+            const htmlDate = document.createElement("h4");
+    
+            htmlSection.classList.add("note");
+            htmlTitle.innerHTML = note.title;
+            htmlContent.innerHTML = note.content;
+            htmlDate.innerHTML = note.createDate.toLocaleString();
+    
+            htmlSection.appendChild(htmlTitle);
+            htmlSection.appendChild(htmlContent);
+            htmlSection.appendChild(htmlDate);
         
+            const main = document.querySelector("main");
+            main.appendChild(htmlSection);
+    
+            const htmlRemove = document.createElement("button");
+            htmlRemove.classList.add("remove");
+            htmlRemove.innerHTML="Usuń";
+            htmlSection.appendChild(htmlRemove);
+    
+            const htmlEdit = document.createElement("button");
+            htmlEdit.classList.add("edit");
+            htmlEdit.innerHTML="Edycja";
+            htmlSection.appendChild(htmlEdit);
+    
+            const htmlCheck = document.createElement("button");
+            htmlCheck.classList.add("check");
+            htmlSection.appendChild(htmlCheck); 
+        }
     }
 }
 
 const notes = new Notes;
-
-
+const ui = new UI;
 
 document.querySelector("#noteAdd").addEventListener("click", ()=>{
     window.titles = document.querySelector("#noteTitle").value;
-    var contents = document.querySelector("#noteContent").value;
-    let id = notes.notes.length+1;
-    const n1 = new Note(id,window.titles,contents,true,"red");
-    notes.addNote(n1);
+    window.contents = document.querySelector("#noteContent").value;
+    notes.addNote();
 }
 );
-
-for (let note of notes.notes) {
-    
-    const htmlSection = document.createElement("section");
-    const htmlTitle = document.createElement("h1");
-    const htmlContent = document.createElement("p");
-    const htmlDate = document.createElement("h4");
-
-    htmlSection.classList.add("note");
-    htmlTitle.innerHTML = note.title;
-    htmlContent.innerHTML = note.content;
-    htmlDate.innerHTML = note.createDate.toLocaleString();
-
-    htmlSection.appendChild(htmlTitle);
-    htmlSection.appendChild(htmlContent);
-    htmlSection.appendChild(htmlDate);
-    
-    const main = document.querySelector("main");
-    main.appendChild(htmlSection);
-
-    const htmlRemove = document.createElement("button");
-    htmlRemove.classList.add("remove");
-    htmlRemove.innerHTML="Usuń";
-    htmlSection.appendChild(htmlRemove);
-
-    const htmlEdit = document.createElement("button");
-    htmlEdit.classList.add("edit");
-    htmlEdit.innerHTML="Edycja";
-    htmlSection.appendChild(htmlEdit);
-
-    const htmlCheck = document.createElement("button");
-    htmlCheck.classList.add("check");
-    htmlSection.appendChild(htmlCheck);
-}
-
+notes.notesMap();
+ui.drawNote(notes.notes);
 let buttonsDelete = document.querySelectorAll(".remove");
 for (let index = 0; index < buttonsDelete.length; index++) {
     buttonsDelete[index].addEventListener("click",removeChild);   
