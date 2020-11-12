@@ -1,0 +1,29 @@
+.shape {
+    cy: 50;
+    r: 20;
+  }
+  
+.shape:nth-child(1) {
+    cx: 60;
+    fill: #6e40aa;
+  }
+  
+  .shape:nth-child(2) {
+    cx: 120;
+    fill: #4c6edb;
+  }
+  
+  .shape:nth-child(3) {
+    cx: 180;
+    fill: #24aad8;
+  }
+  
+  .shape:nth-child(4) {
+    cx: 240;
+    fill: #1ac7c2;
+  }
+  
+  .shape:nth-child(5) {
+    cx: 300;
+    fill: #1ddea3;
+  }
