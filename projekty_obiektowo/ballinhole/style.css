@@ -1,29 +1,54 @@
-.shape {
-    cy: 50;
-    r: 20;
-  }
-  
-.shape:nth-child(1) {
-    cx: 60;
-    fill: #6e40aa;
-  }
-  
-  .shape:nth-child(2) {
-    cx: 120;
-    fill: #4c6edb;
-  }
-  
-  .shape:nth-child(3) {
-    cx: 180;
-    fill: #24aad8;
-  }
-  
-  .shape:nth-child(4) {
-    cx: 240;
-    fill: #1ac7c2;
-  }
-  
-  .shape:nth-child(5) {
-    cx: 300;
-    fill: #1ddea3;
-  }
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(185, 185, 185);
+}
+
+svg {
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+}
+.wrapper{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  width:100%;
+  background-color: rgb(54, 54, 54);
+  position: absolute;
+}
+.menu {
+  display:flex;
+  padding:10px;
+  flex-direction: column;
+  width: 40%;
+  color:white;
+  align-items: center;
+  justify-content: center;
+  /* border:2px solid blue; */
+  border-radius: 50%;
+
+}
+.menu:hover{
+  background-color: rgb(206, 203, 203);
+  color:black;
+  transition: ease-in 0.5s;
+}
+textarea{
+  height:25px;
+  width:50px;
+  display:block;
+}
+button{
+  display:flex;
+}
+.mainShape{
+  r:20;
+  cx:50%;
+  cy:50%;
+}
