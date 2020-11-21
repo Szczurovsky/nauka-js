@@ -1,15 +1,13 @@
-
-document.querySelector("button").addEventListener("click", Hide);
-
-
-
 class Circle {
-    getValue(){
+    getValue() {
         const textArea = document.querySelector("#number").value;
         const svg = document.querySelector("svg");
 
         for (let i = 0; i < textArea; i++) {
-            const circle = document.createElementNS("http://www.w3.org/2000/svg","circle");
+            const circle = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "circle"
+            );
             circle.classList.add("shape");
             svg.appendChild(circle);
         }
@@ -18,36 +16,38 @@ class Circle {
         const board = document.querySelectorAll(".shape");
         for (let i = 0; i < board.length; i++) {
             const circle = board[i];
-            circle.style.r = "40px";
+            circle.style.r = "20px";
             let randomColor = Math.floor(Math.random() * 16777215).toString(16);
             circle.style.cx = Math.floor(Math.random() * window.innerWidth);
             circle.style.cy = Math.floor(Math.random() * window.innerHeight);
             circle.style.fill = "#" + randomColor;
-        }}
-    Tests(){
-        console.log("geehehe");
+        }
     }
 }
+
 
 const kolo = new Circle();
 document.querySelector("button").addEventListener("click", kolo.getValue);
 document.querySelector("button").addEventListener("click", kolo.drawCircles);
-
-
-
+document.querySelector("button").addEventListener("click", Hide);
+document.querySelector("button").addEventListener("click", Timer);
 function Hide() {
-    const menu = document.querySelector(".wrapper");
+    const menu = document.querySelector(".start");
     menu.style.visibility = "hidden";
 }
+function Timer(){
+    var seconds_left = document.querySelector("#number").value*2;
+    var interval = setInterval(function () {
+        document.getElementById("timer_div").innerHTML = --seconds_left;
 
-// const shape = document.querySelector(".shape");
-// const test = window.innerWidth - 40;
-// const planszaW = window.innerWidth - 80;
-// const planszaH = window.innerHeight - 80;
-// shape.style.r = "40px";
-// let randomColor = Math.floor(Math.random()*16777215).toString(16);
-// shape.style.cx = (Math.floor((Math.random() * (planszaW))))+80;
-// shape.style.cy = (Math.floor((Math.random() * (planszaH))))+80;
-// shape.style.fill = "#" + randomColor;
+        if (seconds_left <= 0) {
+            const endGame = document.querySelector(".endGame");
+            endGame.style.visibility ="visible";
+            clearInterval(interval);
+        }
+    }, 1000);
+}
 
-// console.log(test);
+const test = document.querySelector(".mainShape");
+const bBox = test.getBBox();
+console.log(bBox);
