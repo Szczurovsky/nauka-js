@@ -23,24 +23,6 @@ class Circle {
             circle.style.fill = "#" + randomColor;
         }
     }
-    // animateCircle(event){
-    //     const mainCircle = document.querySelector(".mainShape");
-    //     const circleData = mainCircle.getBBox();
-    //     const body = document.querySelector("body");
-    //     const gameWidth = body.offsetWidth;
-
-    //     const gameHeight = body.offsetHeight;
-    //     const maxX = gameWidth - circleData.width;
-    //     const maxY = gameWidth - circleData.height;
-
-    // let x = event.beta;
-    // let y = event.gamma;
-    // if(x>90) {x = 90;}
-    // if(x <- 90) {x = -90;}
-    // x += 90;
-    // y += 90;
-    // console.log(maxX);
-    // }
 }
 
 const kolo = new Circle();
@@ -103,7 +85,7 @@ var maxY = garden.clientHeight - ball.clientHeight;
 
 function handleOrientation(event) {
     var y = event.beta; // In degree in the range [-180,180]
-    var x = event.alpha; // In degree in the range [-90,90]
+    var x = event.gamma; // In degree in the range [-90,90]
 
     // output.innerHTML  = "beta : " + x + "\n";
     // output.innerHTML += "gamma: " + y + "\n";
@@ -141,11 +123,11 @@ const menu = document.querySelector(".start");
 function test() {
     // setInterval(()=>{ball.style.cx += window.speedX;}, 500);
     // setInterval(()=>{a.x += window.speedX;console.log(a.x);}, 5000);
-    var id = setInterval(move, 1);
+    setInterval(move, 1);
     function move() {
         
-        let speedX = window.speedX*0.005;
-        let speedY = window.speedY*0.001;
+        let speedX = window.speedX*0.05;
+        let speedY = window.speedY*0.05;
         // eslint-disable-next-line use-isnan
         if(isNaN(speedX)){
             speedX=constAX;}
