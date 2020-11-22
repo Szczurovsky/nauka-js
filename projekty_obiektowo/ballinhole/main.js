@@ -27,17 +27,20 @@ class Circle {
 
 
 const kolo = new Circle();
-document.querySelector("button").addEventListener("click", kolo.getValue);
-document.querySelector("button").addEventListener("click", kolo.drawCircles);
-document.querySelector("button").addEventListener("click", Hide);
-document.querySelector("button").addEventListener("click", Timer);
+document.querySelector(".startGame").addEventListener("click", kolo.getValue);
+document.querySelector(".startGame").addEventListener("click", kolo.drawCircles);
+document.querySelector(".startGame").addEventListener("click", Hide);
+document.querySelector(".startGame").addEventListener("click", Timer);
+document.querySelector(".newGame").addEventListener("click",() =>{
+    window.location.reload();
+});
 function Hide() {
     const menu = document.querySelector(".start");
     menu.style.visibility = "hidden";
 }
 function Timer(){
-    var seconds_left = document.querySelector("#number").value*2;
-    var interval = setInterval(function () {
+    let seconds_left = document.querySelector("#number").value*2;
+    const interval = setInterval(function () {
         document.getElementById("timer_div").innerHTML = --seconds_left;
 
         if (seconds_left <= 0) {

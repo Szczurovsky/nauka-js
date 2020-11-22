@@ -9,15 +9,17 @@
   <body>
     <section class="timer"><div id="timer_div"></div></section>
     <section class="start">
-
       <div class="menu">
         <p>Gra w "zbierz je wszystkie" :D</p>
         <p>Wprowadź ilość kul do zdobycia!</p>
         <textarea id="number"></textarea>
-        <button>Czas. Start!</button>
+        <button class="startGame">Czas. Start!</button>
       </div>
     </section>
-    <section class="endGame" style="visibility: hidden"></section>
+    <section class="endGame" style="visibility: hidden">
+      <p>Koniec gry - przegrałeś!</p>
+      <button class="newGame">Kliknij by zagrać raz jeszcze!</button>
+    </section>
     <svg>
       <circle class="mainShape" />
     </svg>
@@ -25,7 +27,7 @@
     <!-- <canvas></canvas>
  <canvas></canvas>
  <canvas></canvas>
- <canvas></canvas>
+ <canvas></canvas> 
  <canvas></canvas>
  <canvas></canvas>
  <canvas></canvas>
