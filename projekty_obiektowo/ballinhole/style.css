@@ -84,3 +84,12 @@ button{
   margin:10%;
   color:white;
 }
+/* .ball{
+  position: absolute;
+  top  : calc(50%);
+  left  : calc(50%);
+  width : 20px;
+  height: 20px;
+  background: green;
+  border-radius: 100%;
+} */
