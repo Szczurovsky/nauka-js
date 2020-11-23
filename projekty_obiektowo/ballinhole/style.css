@@ -13,77 +13,85 @@ svg {
   width: 100vw;
   z-index: 2;
 }
-.start{
-  display:flex;
+.start {
+  display: flex;
   align-items: center;
   justify-content: center;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
   background-color: rgb(54, 54, 54);
   position: absolute;
 }
 .menu {
-  display:flex;
-  padding:10px;
+  display: flex;
+  padding: 10px;
   flex-direction: column;
   text-align: center;
   width: 90%;
-  color:white;
+  color: white;
   align-items: center;
   justify-content: center;
   /* border:2px solid blue; */
   border-radius: 50%;
-
 }
-.menu:hover{
+.menu:hover {
   background-color: rgb(206, 203, 203);
-  color:black;
+  color: black;
   transition: ease-in 0.5s;
 }
-textarea{
-  height:25px;
-  width:50px;
-  display:block;
+textarea {
+  height: 25px;
+  width: 50px;
+  display: block;
 }
-button{
-  display:flex;
+button {
+  display: flex;
 }
-.mainShape{
-  r:10;
-  cx:50%;
-  cy:50%;
+.mainShape {
+  r: 10;
+  cx: 50%;
+  cy: 50%;
 }
-.timer{
-  display:flex;
+.timer {
+  display: flex;
   justify-content: center;
 }
-#timer_div{
-  display:flex;
+#timer_div {
+  display: flex;
   justify-content: center;
   align-items: center;
-  text-align:center;
-  color:white;
-  width:20%;
-  height:8%;
-  position:absolute;
+  text-align: center;
+  color: white;
+  width: 20%;
+  height: 8%;
+  position: absolute;
   background-color: rgba(248, 112, 112, 0.637);
   z-index: 1;
 }
-.endGame{
-  position:fixed;
-  display:flex;
+.endGame {
+  position: fixed;
+  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
   z-index: 5;
   background-color: black;
 }
-.endGame p{
-  margin:10%;
-  color:white;
+.endGame p {
+  margin: 10%;
+  color: white;
 }
+/* text {
+  x: 50%;
+  y: 50%;
+  text-anchor: middle;
+  fill: white;
+  font-size: 100px;
+  font-family: Arial;
+  /* dy: .3em; */
+/* } */ 
 /* .ball{
   position: absolute;
   top  : calc(50%);
