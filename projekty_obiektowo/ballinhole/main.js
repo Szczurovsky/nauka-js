@@ -15,7 +15,7 @@ class Circle {
         "http://www.w3.org/2000/svg",
         "circle"
       );
-
+circle.id=i;
       circle.classList.add("shape");
       svg.appendChild(circle);
     }
@@ -33,8 +33,8 @@ class Circle {
   }
   removeCircles(id) {
     const board = document.querySelectorAll(".shape");
-    const circle = board[id];
-    circle.style.r = "0px";
+    const svg = document.querySelector("svg");
+    svg.removeChild(board[id]);
   }
 
   circleColor() {
@@ -134,7 +134,7 @@ const a = ball.getBBox();
 //     window.speedY = y;
 //     console.log(window.speedX);
 // }
-
+let coordinatesArr = [];
 const menu = document.querySelector(".start");
 function game() {
   const constAX = a.x;
@@ -151,6 +151,7 @@ function game() {
     if (isNaN(speedX)) {
       speedX = constAX;
     } else {
+      let j = 0;
       parseBallX += speedX;
       ball.style.cx = parseBallX;
       parseBallY += speedY;
@@ -160,7 +161,7 @@ function game() {
         X: ball.style.cx,
         Y: ball.style.cy,
       };
-      let coordinatesArr = kolo.circleCords();
+      coordinatesArr = kolo.circleCords();
       let wynik =
         ((window.circle.X - coordinatesArr[0].X) ^ 2) +
         ((window.circle.Y - coordinatesArr[0].Y) ^ 2);
@@ -169,12 +170,17 @@ function game() {
       }
       let math = Math.sqrt(wynik);
       console.log(math);
-      if (math <= 4) {
-          kolo.removeCircles(0);
+      if (math <= 1) {
+        kolo.removeCircles(j);
+        j++;
+      }
+      if(coordinatesArr.length<=0){
+        console.log("ssss");
       }
     }
   }
 }
+
 window.addEventListener("DOMContentLoaded", game);
 window.addEventListener("deviceorientation", (ev) =>
   kolo.handleOrientation(ev)
