@@ -135,6 +135,7 @@ const a = ball.getBBox();
 //     console.log(window.speedX);
 // }
 let coordinatesArr = [];
+const board = document.querySelectorAll(".shape");
 const menu = document.querySelector(".start");
 function game() {
   const constAX = a.x;
@@ -144,13 +145,15 @@ function game() {
   ball.style.cy = constBY;
   let parseBallY = parseInt(ball.style.cy);
 
-  setInterval(move, 1);
+ const inter = setInterval(move, 10);
   function move() {
     let speedX = window.speedX * 0.05;
     let speedY = window.speedY * 0.05;
+    
     if (isNaN(speedX)) {
       speedX = constAX;
     } else {
+    
       let j = 0;
       parseBallX += speedX;
       ball.style.cx = parseBallX;
@@ -169,13 +172,17 @@ function game() {
         wynik *= -1;
       }
       let math = Math.sqrt(wynik);
-      console.log(math);
       if (math <= 1) {
+        
         kolo.removeCircles(j);
+        window.board1 = document.querySelectorAll(".shape");
+        console.log(window.board1.length);
         j++;
       }
-      if(coordinatesArr.length<=0){
-        console.log("ssss");
+      if(window.board1.length==0){
+        const endGame = document.querySelector(".endGame");
+      endGame.style.visibility = "visible";
+        
       }
     }
   }
