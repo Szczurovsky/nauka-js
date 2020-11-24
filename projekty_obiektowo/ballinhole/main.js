@@ -147,24 +147,26 @@ function game() {
       };
       coordinatesArr = kolo.circleCords();
       let wynik =
-        ((window.circle.X - coordinatesArr[j].X) ^ 2) +
-        ((window.circle.Y - coordinatesArr[j].Y) ^ 2);
-        
+        (Math.pow(parseFloat(window.circle.X) - parseFloat(coordinatesArr[j].X),2)) +
+        (Math.pow(parseFloat(window.circle.Y) - parseFloat(coordinatesArr[j].Y),2));
+        // let pCiX1 = Math.pow(window.circle.X);
+        // let pCoX1 = math.pow(coordinatesArr[j].X);
       // if (Math.sign(wynik) == -1) {
       //   wynik *= -1;
       // }
       let math = Math.sqrt(wynik);
       console.log(math);
-      if (math < 1) {
-        
+      if (math < 20) {
+
         kolo.removeCircles(j);
         window.board1 = document.querySelectorAll(".shape");
-        console.log(window.board1.length);
+        
         j++;
       }
       if(window.board1.length==0){
         const winGame = document.querySelector(".winGame");
       winGame.style.visibility = "visible";
+      // window.location.reload();
       clearInterval(inter);
         
       }
