@@ -59,15 +59,7 @@ circle.id=i;
     }
     return cords;
   }
-  game() {}
-  // test2(){
-  //     setInterval(test3, 1000);
-  //     function test3(){
-  //         let c = this.circleMove;
-  //         let d = this.circleCords;
-  //         console.log("Move" + c);
-  //     }
-  // }
+
   handleOrientation(event) {
     let y = event.beta;
     let x = event.gamma;
@@ -79,17 +71,6 @@ circle.id=i;
     window.speedY = y;
   }
 }
-
-// class gameRule{
-//     constructor(){
-//         this.circle=new Circle();
-
-//     }
-//     test1(){
-//         let test2 = this.circle.circleMove;
-//         console.log(test2);
-//     }
-// }
 
 const kolo = new Circle();
 document.querySelector(".startGame").addEventListener("click", () => {
@@ -140,10 +121,10 @@ const menu = document.querySelector(".start");
 function game() {
   const constAX = a.x;
   ball.style.cx = constAX;
-  let parseBallX = parseInt(ball.style.cx);
+  let parseBallX = parseFloat(ball.style.cx);
   const constBY = a.y;
   ball.style.cy = constBY;
-  let parseBallY = parseInt(ball.style.cy);
+  let parseBallY = parseFloat(ball.style.cy);
 
  const inter = setInterval(move, 10);
   function move() {
@@ -166,13 +147,15 @@ function game() {
       };
       coordinatesArr = kolo.circleCords();
       let wynik =
-        ((window.circle.X - coordinatesArr[0].X) ^ 2) +
-        ((window.circle.Y - coordinatesArr[0].Y) ^ 2);
-      if (Math.sign(wynik) == -1) {
-        wynik *= -1;
-      }
+        ((window.circle.X - coordinatesArr[j].X) ^ 2) +
+        ((window.circle.Y - coordinatesArr[j].Y) ^ 2);
+        
+      // if (Math.sign(wynik) == -1) {
+      //   wynik *= -1;
+      // }
       let math = Math.sqrt(wynik);
-      if (math <= 1) {
+      console.log(math);
+      if (math < 1) {
         
         kolo.removeCircles(j);
         window.board1 = document.querySelectorAll(".shape");
@@ -180,15 +163,16 @@ function game() {
         j++;
       }
       if(window.board1.length==0){
-        const endGame = document.querySelector(".endGame");
-      endGame.style.visibility = "visible";
+        const winGame = document.querySelector(".winGame");
+      winGame.style.visibility = "visible";
+      clearInterval(inter);
         
       }
     }
   }
 }
 
-window.addEventListener("DOMContentLoaded", game);
+document.querySelector(".startGame").addEventListener("click", game);
 window.addEventListener("deviceorientation", (ev) =>
   kolo.handleOrientation(ev)
 );

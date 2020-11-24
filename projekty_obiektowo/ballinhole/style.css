@@ -83,6 +83,21 @@ button {
   margin: 10%;
   color: white;
 }
+.winGame{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  background-color: black;
+}
+.winGame p{
+  margin: 10%;
+  color: white;
+}
 /* text {
   x: 50%;
   y: 50%;
