@@ -28,43 +28,22 @@ function losujPozycje() {
     return Math.floor(Math.random() * 1000);
 }
 let balls = [];
-const ball = new Ball(losujPozycje());
-ball.losuj();
+// const ball = new Ball(losujPozycje());
+// ball.losuj();
 
-// for (let i = 0; i <= 50; i++) {
-//     const ball = new Ball(losujPozycje());
-//     balls.push(ball);
-// }
+for (let i = 0; i <= 50; i++) {
+    const ball = new Ball(losujPozycje());
+    ball.losuj();
+    balls.push(ball);
+}
 // draw shape
-
-ctx.beginPath();
-ctx.fillStyle = "#FF0000";
-ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI, false);
-ctx.fill();
-ctx.closePath();
-
-// const size = 50;
-// let balls=[];
-// for(let i = 0; i<=size;i++){
-//     window["ball"+i] = new Ball(0,i);
-//     window["ball"+i].randomize();
-//     balls.push(["ball"+i]);
-
-// }
-// for(let i = 0; i<=size;i++){
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     ctx.arc(window["ball"+i].x, window["ball"+i].y, window["ball"+i].radius, 2 * Math.PI, false);
-// }
-// var ball = new Ball(30, 30);
-// ball.randomize();
-
-// var ball2 = new Ball(50, 120);
-// ball2.randomize();
-
-// var ball3 = new Ball(100, 100);
-// ball3.randomize();
-
-// var balls = [ball, ball2, ball3];
+for (let i = 0; i <= 50; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = "#FF0000";
+    ctx.arc(balls[i].x, balls[i].y, balls[i].radius, 0, 2 * Math.PI, false);
+    ctx.fill();
+    ctx.closePath();
+}
 
 setInterval(animate, 50);
 setInterval(animate1, 500);
@@ -72,9 +51,9 @@ window.c = 5;
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < 1; i++) {
-        ball.updatePositiony();
+        balls[i].updatePositiony();
         ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2, true);
+        ctx.arc(balls[i].x, balls[i].y, balls[i].radius, 0, Math.PI * 2, true);
         ctx.fill();
 
         ctx.closePath();
@@ -83,9 +62,9 @@ function animate() {
 function animate1() {
     window.c++;
     for (let i = 0; i < 1; i++) {
-        ball.updatePositionX(window.c);
+        balls[i].updatePositionX(window.c);
         ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2, true);
+        ctx.arc(balls[i].x, balls[i].y, balls[i].radius, 0, Math.PI * 2, true);
         ctx.fill();
 
         ctx.closePath();
