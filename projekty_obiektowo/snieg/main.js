@@ -50,6 +50,7 @@ function DodajKolka() {
 setInterval(animate, 50);
 // setInterval(animate1, 500);
 window.c = 5;
+let snowy = 0;
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < balls.length; i++) {
@@ -65,7 +66,10 @@ function animate() {
     }
     for(let i in balls){
         if (balls[i].y >= canvas.height) {
-            snow.style.offsetHeight++;
+            
+            snow.style.height = snowy+"px";
+            snowy+=5;
+            console.log(snowy);
         }
     }
 }
