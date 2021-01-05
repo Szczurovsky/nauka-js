@@ -24,13 +24,14 @@ class Notes {
     }
     addNote(){
         let id = this.notes.length + 1;
-        const n1 = new Note(id,window.titles,window.contents,true,"red");
+        const n1 = new Note(id,window.titles,window.contents,true,window.color);
         this.notes.push(n1);
         this.db.save(this.notes);
     }
     removeNote(id){
         this.notesFromStorage.splice(id, 1);
-        localStorage.setItem(this.db.notesKey, JSON.stringify(this.notesFromStorage));    
+        localStorage.setItem(this.db.notesKey, JSON.stringify(this.notesFromStorage));
+        window.location.reload();    
     }
     getID(note){
         return note.id;
@@ -41,6 +42,15 @@ class Notes {
             note.createDate = new Date(note.createDate);
             return note;
         });
+    }
+    editNote(id){
+        let existing = localStorage.getItem("notes");
+        let text = document.querySelector(".text").value;
+        existing = existing ? JSON.parse(existing):{};
+        console.log(existing);
+        existing[id].content = text;
+        localStorage.setItem(this.db.notesKey, JSON.stringify(existing));
+        window.location.reload();
     }
 }
 class LS {
@@ -71,6 +81,7 @@ class UI {
     
             htmlSection.classList.add("note");
             htmlTitle.innerHTML = note.title;
+            htmlSection.dataset.id = note.id;
             htmlContent.innerHTML = note.content;
             htmlDate.innerHTML = note.createDate.toLocaleString();
     
@@ -96,6 +107,20 @@ class UI {
             htmlSection.appendChild(htmlCheck); 
         }
     }
+    drawEdit(event){
+        const textbox = document.createElement("textarea");
+        const buttonOk = document.createElement("button");
+        buttonOk.classList.add("ok");
+        buttonOk.innerHTML="Ok";
+        textbox.classList.add("text");
+        textbox.cols="25";
+        textbox.rows="5";
+        textbox.placeholder="wpisz tekst do zmiany!";
+        console.log("edit dziala");
+        const parent = event.currentTarget.parentElement;
+        parent.appendChild(textbox);
+        parent.appendChild(buttonOk);
+    }
 }
 
 const notes = new Notes;
@@ -105,8 +130,7 @@ document.querySelector("#noteAdd").addEventListener("click", ()=>{
     window.titles = document.querySelector("#noteTitle").value;
     window.contents = document.querySelector("#noteContent").value;
     notes.addNote();
-}
-);
+});
 notes.notesMap();
 ui.drawNote(notes.notes);
 let buttonsDelete = document.querySelectorAll(".remove");
@@ -116,111 +140,43 @@ for (let index = 0; index < buttonsDelete.length; index++) {
 function removeChild(ev){
     const element = ev.currentTarget.parentElement;
     const parentElement = element.parentElement;
+    // const id = parentElement.dataset.id;
+    // const index = notes.notes.findIndex(el => el.id === id);
     let index = Array.prototype.indexOf.call(parentElement.children,element);
     const main = document.querySelector("main");
     main.removeChild(element);
     notes.removeNote(index);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // class Note{
-
-// //         title = document.querySelector("#noteTitle").value;
-// //         content = document.querySelector("#noteContent").value;
-
-   
-// // }
-// window.title = document.querySelector("#noteTitle").value;
-// window.content = document.querySelector("#noteContent").value;
-// const note = {
-//     title: window.title,
-//     content: window.content,
-//     color: window.color,
-//     pinned: false,
-//     createDate: new Date()
-// };
-// class Notes {
-//     constructor(){
-//     }
-//     // zbior wszystkich notatek
-//     addNote(note){
-//         console.log("sssss");
-//         this.notes = [];
-//         const localStorageNotesKey = "notes";
-//         this.notes.push(note);
-//         localStorage.setItem(localStorageNotesKey, JSON.stringify(Notes.notes));
-//         window.location.reload;
-//     }
-//     // dodawawanie
-//     // usuwanie
-//     // pobieranie
-//     // zapisywanie
-//     // edytowanie
-// }
-
-// // class UI {
-// //     constructor(){}
-// //     tworzenie "srodka" notatki
-// // }
-// // const note = new Note;
-// const notes = new Notes();
-// document.querySelector("#noteAdd").addEventListener("click",notes.addNote(note) );
+let buttonsEdit = document.querySelectorAll(".edit");
+for (let index = 0; index < buttonsEdit.length; index++) {
+    buttonsEdit[index].addEventListener("click",(ev)=>{
+        ui.drawEdit(ev);
+        document.querySelector(".ok").addEventListener("click",(ev)=>{
+            const element = ev.currentTarget.parentElement;
+            const parentElement = element.parentElement;
+            let index = Array.prototype.indexOf.call(parentElement.children,element);
+            notes.editNote(index);
+        });
+    });
+}
+
+
+let noteStorage = localStorage.getItem("notes");
+noteStorage = noteStorage ? JSON.parse(noteStorage):{};
+const test = document.querySelectorAll(".note");
+for (let index = 0; index < noteStorage.length; index++) {
+
+    test[index].style.background = noteStorage[index].color;
+    console.log(noteStorage[index].color);
+}
+const colorsButton = document.querySelectorAll(".colors button");
+for (let index = 0; index < colorsButton.length; index++) {
+    colorsButton[index].addEventListener("click", set_Color); 
+}
+
+function set_Color(ev){
+    const target = ev.currentTarget;
+    let styles = window.getComputedStyle(target);
+    window.color = styles.getPropertyValue("background-color");
+    console.log(target);
+}
