@@ -1,11 +1,12 @@
 /* eslint-disable indent */
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-duplicate-case */
+// Zmien sobie case jak przyklad 1 oraz zmien przypisanie do kanalow - od jeden do 4
 document.body.addEventListener("keypress", onKeyPress);
 document.querySelector("#channel").addEventListener("click", playChannel);
 document.querySelector("#channel1").addEventListener("click", playChannel1);
 document.querySelector("#playAllBtn").addEventListener("click", playChannels);
-document.querySelector("#recordBtn").addEventListener("click", resetRecord)
+document.querySelector("#recordBtn").addEventListener("click", resetRecord);
 let channel = [];
 let channel1 = [];
 let channel2 = [];
@@ -16,32 +17,28 @@ let channel6 = [];
 let channel7 = [];
 let channel8 = [];
 let channel9 = [];
-let channelsArray = [channel, channel1,channel2,channel3,channel4,channel5,channel6,channel7,channel8,channel9];
 let recordStart = Date.now();
 function onKeyPress(ev) {
     let sound;
     let soundName;
+    const keyPressTime = Date.now() - recordStart;
     switch (ev.code) {
     case "KeyA":
         soundName = "boom";
-        sound = document.querySelector("#boom");
         
-        const keyPressTime = Date.now() - recordStart;
         const recordedSound = {
             sound: soundName,
             time: keyPressTime
         };
         channel.push(recordedSound);
-        sound.play();
         break;
     case "KeyS":
         soundName = "clap";
         sound = document.querySelector("#clap");
         
-        const keyPressTime1 = Date.now() - recordStart;
         const recordedSound1 = {
             sound: soundName,
-            time: keyPressTime1
+            time: keyPressTime
         };
         channel1.push(recordedSound1);
         sound.play();
@@ -50,10 +47,9 @@ function onKeyPress(ev) {
         soundName = "hihat";
         sound = document.querySelector("#hihat");
         
-        const keyPressTime2 = Date.now() - recordStart;
         const recordedSound2 = {
             sound: soundName,
-            time: keyPressTime2
+            time: keyPressTime
         };
         channel2.push(recordedSound2);
         sound.play();
@@ -105,7 +101,6 @@ function onKeyPress(ev) {
             time: keyPressTime6
         };
         channel6.push(recordedSound6);
-        sound.play();
         break;
     case "KeyK":
         soundName = "tink";
@@ -117,7 +112,6 @@ function onKeyPress(ev) {
             time: keyPressTime7
         };
         channel7.push(recordedSound7);
-        sound.play();
         break;
     case "KeyL":
         soundName = "tom";
@@ -129,10 +123,11 @@ function onKeyPress(ev) {
             time: keyPressTime8
         };
         channel8.push(recordedSound8);
-        sound.play();
         break;
         }
-        
+        sound = document.querySelector("#"+soundName);
+        sound.play();
+
     }
 
 function playChannel() {
@@ -210,6 +205,6 @@ function resetRecord(){
     channel7 = [];
     channel8 = [];
    channel9 = [];
-   channelsArray = 0;
+//    channelsArray = 0;
    console.log("ssssss");
 }

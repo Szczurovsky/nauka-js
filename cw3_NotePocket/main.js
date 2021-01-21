@@ -117,7 +117,7 @@ function note_edit_interface(ev){
     textbox.classList.add("text");
     textbox.cols="25";
     textbox.rows="5";
-    textbox.placeholder="Co chcesz zmienić?";
+    textbox.placeholder="wpisz tekst do zmiany!";
     const target = ev.currentTarget;
     const parent = target.parentElement;
     const parentParent = parent.parentElement;

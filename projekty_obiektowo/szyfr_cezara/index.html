@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Wprowadz przesuniecie szyfru</p><input type="text" class="przes">
+    <p>Wprowadz wiadomosc do szyfrowania</p><input type="text" class="szyfr">
+    <button class="przycisk"></button>
+    <div class="text"></div>
+    <!-- <script src="main.js"></script> -->
+    <script>
+var alphabet = "aąbcćdeęfghijklłmnoópqrstuvwxyzźż";
+var fullAlphabet = alphabet + alphabet + alphabet;
+const btn = document.querySelector(".przycisk");
+const wynik = document.querySelector(".text");
+function runCipher() {
+    var cipherText = document.querySelector(".szyfr").value;
+    var cipherOffset = document.querySelector(".przes").value;
+    cipherOffset = cipherOffset % alphabet.length; //zabezpieczenie przed przerostem alphabetu
+    var cipherFinish = "";
+
+    for (let i = 0; i < cipherText.length; i++) {
+        var letter = cipherText[i];
+        var upper = letter == letter.toUpperCase();
+        letter = letter.toLowerCase();
+
+        var index = alphabet.indexOf(letter);
+        if (index == -1) {
+            // cipherFinish += letter;
+        } else {
+          console.log(index)
+            index = index + cipherOffset + alphabet.length; //wytyczenie numeru w alfabecie
+            console.log(cipherOffset,alphabet.length)
+            console.log(index);
+            var nextLetter = fullAlphabet[index]; //dodanie literki
+            console.log(nextLetter)
+            if (upper) nextLetter = nextLetter.toUpperCase(); //funkcjonalnosc malych duzych liter
+            cipherFinish += nextLetter;
+        }
+    }
+
+    wynik.innerHTML= cipherFinish;
+}
+
+btn.addEventListener("click",runCipher);
+
+</script>
+</body>
+</html>
