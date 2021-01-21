@@ -5,8 +5,14 @@
 }
 section.addNote{
     margin:50px;
-
+text-align:center;
     border:1px black solid;
+}
+.notes{
+  display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 main{
     display:flex;

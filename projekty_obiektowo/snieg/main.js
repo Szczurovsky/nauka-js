@@ -1,5 +1,7 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+const sniezynka = new Image();
+sniezynka.url="./sniezynka.png";
 class Ball {
     constructor(x) {
         this.x = x;
@@ -13,33 +15,33 @@ class Ball {
     losuj() {
         this.radius = this.getRandomNum(1, 5);
         // this.speedx = this.getRandomNum(10, 15);
-        this.speedy = this.getRandomNum(1, 10);
+        this.speedy = this.getRandomNum(3, 10);
     }
 
     updatePositiony() {
         this.y += this.speedy;
     }
-    updatePositionX(i) {
-        this.x += -3 * Math.pow(-1, i);
-        // console.log(Math.pow(-1, i));
-    }
+    // updatePositionX(i) {
+    //     this.x += -3 * Math.pow(-1, i);
+    //    
+    // }
 }
-const ballek = new Ball();
+
 function losujPozycje() {
-    return Math.floor(Math.random() * (canvas.width - 2));
+    return Math.floor(Math.random() * (canvas.width));
 }
 let balls = [];
 // const ball = new Ball(losujPozycje());
 // ball.losuj();
-setInterval(DodajKolka, 3000);
+setInterval(DodajKolka, 50);
 function DodajKolka() {
-    for (let i = 0; i <= 60; i++) {
+    for (let i = 0; i <= 5; i++) {
         const ball = new Ball(losujPozycje());
         ball.losuj();
         balls.push(ball);
     }
 
-    for (let i = 0; i <= 60; i++) {
+    for (let i = 0; i <= 5; i++) {
         ctx.beginPath();
         ctx.fillStyle = "#FFFFFF";
         ctx.arc(balls[i].x, balls[i].y, balls[i].radius, 0, 2 * Math.PI, false);
@@ -74,15 +76,3 @@ function animate() {
     }
 }
 const snow = document.querySelector(".snow");
-function animate1() {
-    window.c++;
-    for (let i = 0; i < balls.length; i++) {
-      
-        balls[i].updatePositionX(window.c);
-        ctx.beginPath();
-        ctx.arc(balls[i].x, balls[i].y, balls[i].radius, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.closePath();
-    }
-}

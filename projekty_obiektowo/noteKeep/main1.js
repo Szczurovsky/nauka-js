@@ -8,7 +8,7 @@ class Note{
         this.createDate = new Date();
     }
 }
-
+let title , contents;
 
 class Notes {
     constructor(){
@@ -24,13 +24,13 @@ class Notes {
     }
     addNote(){
         let id = this.notes.length + 1;
-        const n1 = new Note(id,window.titles,window.contents,true,window.color);
+        const n1 = new Note(id,title,contents,true,window.color);
         this.notes.push(n1);
         this.db.save(this.notes);
     }
     removeNote(id){
         this.notesFromStorage.splice(id, 1);
-        localStorage.setItem(this.db.notesKey, JSON.stringify(this.notesFromStorage));
+        localStorage.setItem(this.db.notesKey, JSON.stringify(this.notesFromStorage)); // przeksztalcenie w tekst o formacie JSON
         window.location.reload();    
     }
     getID(note){
@@ -51,6 +51,21 @@ class Notes {
         existing[id].content = text;
         localStorage.setItem(this.db.notesKey, JSON.stringify(existing));
         window.location.reload();
+    }
+    removeChild(ev){
+        const element = ev.currentTarget.parentElement;
+        const parentElement = element.parentElement;
+    
+        let index = Array.prototype.indexOf.call(parentElement.children,element);
+        const main = document.querySelector("main");
+        main.removeChild(element);
+        notes.removeNote(index);
+    }
+    set_Color(ev){
+        const target = ev.currentTarget;
+        let styles = window.getComputedStyle(target);
+        window.color = styles.getPropertyValue("background-color");
+        console.log(target);
     }
 }
 class LS {
@@ -127,25 +142,15 @@ const notes = new Notes;
 const ui = new UI;
 
 document.querySelector("#noteAdd").addEventListener("click", ()=>{
-    window.titles = document.querySelector("#noteTitle").value;
-    window.contents = document.querySelector("#noteContent").value;
+    title = document.querySelector("#noteTitle").value;
+    contents = document.querySelector("#noteContent").value;
     notes.addNote();
 });
 notes.notesMap();
 ui.drawNote(notes.notes);
 let buttonsDelete = document.querySelectorAll(".remove");
 for (let index = 0; index < buttonsDelete.length; index++) {
-    buttonsDelete[index].addEventListener("click",removeChild);   
-}
-function removeChild(ev){
-    const element = ev.currentTarget.parentElement;
-    const parentElement = element.parentElement;
-    // const id = parentElement.dataset.id;
-    // const index = notes.notes.findIndex(el => el.id === id);
-    let index = Array.prototype.indexOf.call(parentElement.children,element);
-    const main = document.querySelector("main");
-    main.removeChild(element);
-    notes.removeNote(index);
+    buttonsDelete[index].addEventListener("click",notes.removeChild);   
 }
 let buttonsEdit = document.querySelectorAll(".edit");
 for (let index = 0; index < buttonsEdit.length; index++) {
@@ -171,12 +176,6 @@ for (let index = 0; index < noteStorage.length; index++) {
 }
 const colorsButton = document.querySelectorAll(".colors button");
 for (let index = 0; index < colorsButton.length; index++) {
-    colorsButton[index].addEventListener("click", set_Color); 
+    colorsButton[index].addEventListener("click", notes.set_Color); 
 }
 
-function set_Color(ev){
-    const target = ev.currentTarget;
-    let styles = window.getComputedStyle(target);
-    window.color = styles.getPropertyValue("background-color");
-    console.log(target);
-}

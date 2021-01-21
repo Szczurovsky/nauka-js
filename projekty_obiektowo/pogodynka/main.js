@@ -18,15 +18,9 @@ class Notes {
         this.ui = new UI();
         this.notes = [];
         this.notesFromStorage = JSON.parse(localStorage.getItem(this.db.notesKey));
-        // this.notesFromStorage = JSON.parse(localStorage.getItem(this.db.notesKey));
-        // this.notes = this.notesFromStorage.map(note => {
-        //     note.createDate = new Date(note.createDate);
-        //     return note;
-        // });
+
     }
     addNote(n){
-        // let id = this.notes.length + 1;
-        // const n1 = new Note(id,title,window.contents,true,window.color);
         this.notes.push(n);
         this.db.save(this.notes);
     }
@@ -45,20 +39,25 @@ class Notes {
             return note;
         });
     }
-    editNote(id){
-        let existing = localStorage.getItem("notes");
-        let text = document.querySelector(".text").value;
-        existing = existing ? JSON.parse(existing):{};
-        console.log(existing);
-        existing[id].content = text;
-        localStorage.setItem(this.db.notesKey, JSON.stringify(existing));
-        window.location.reload();
-    }
+    // editNote(id){
+    //     let existing = localStorage.getItem("notes");
+    //     let text = document.querySelector(".text").value;
+    //     existing = existing ? JSON.parse(existing) : {};
+    //     if (existing) {
+    //         existing = JSON.parse(existing);
+    //     } else {
+    //         existing = {};
+    //     }
+    //     console.log(existing);
+    //     existing[id].content = text;
+    //     localStorage.setItem(this.db.notesKey, JSON.stringify(existing));
+    //     window.location.reload();
+    // }
     removeChild(ev){
         const element = ev.currentTarget.parentElement;
         const parentElement = element.parentElement;
     
-        let index = Array.prototype.indexOf.call(parentElement.children,element);
+        let index = [...parentElement.children].indexOf(element);
         const main = document.querySelector("main");
         main.removeChild(element);
         notes.removeNote(index);
@@ -137,29 +136,10 @@ class UI {
             htmlRemove.innerHTML="Usuń";
             htmlSection.appendChild(htmlRemove);
     
-            const htmlEdit = document.createElement("button");
-            htmlEdit.classList.add("edit");
-            htmlEdit.innerHTML="Edycja";
-            htmlSection.appendChild(htmlEdit);
-    
             const htmlCheck = document.createElement("button");
             htmlCheck.classList.add("check");
             htmlSection.appendChild(htmlCheck); 
         }
-    }
-    drawEdit(event){
-        const textbox = document.createElement("textarea");
-        const buttonOk = document.createElement("button");
-        buttonOk.classList.add("ok");
-        buttonOk.innerHTML="Ok";
-        textbox.classList.add("text");
-        textbox.cols="25";
-        textbox.rows="5";
-        textbox.placeholder="wpisz tekst do zmiany!";
-        console.log("edit dziala");
-        const parent = event.currentTarget.parentElement;
-        parent.appendChild(textbox);
-        parent.appendChild(buttonOk);
     }
 }
 
@@ -194,7 +174,7 @@ for (let index = 0; index < buttonsEdit.length; index++) {
 
 
 let noteStorage = localStorage.getItem("notes");
-noteStorage = noteStorage ? JSON.parse(noteStorage):{};
+noteStorage = noteStorage ? JSON.parse(noteStorage):{}; //upewnienie ze notestorage bedzie obiektem
 const test = document.querySelectorAll(".note");
 for (let index = 0; index < noteStorage.length; index++) {
 
@@ -212,7 +192,7 @@ const api = {
 };
 async function getResults(){
 
-    city = document.querySelector("#noteTitle").value;
+    const city = document.querySelector("#noteTitle").value;
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=pl&APPID=334f64f5734edf8ec8c3143c2844165b`)
       
         .then(function(response){
@@ -234,9 +214,6 @@ async function getResults(){
 
 }
 
-function log(log){
-    console.log(log);
-}
 function displayWeather(){
     const iconIMG=`<img src="http://openweathermap.org/img/wn/${icon}@2x.png"/>`;
     const n =  new Note(miasto , description, iconIMG,temperature,pressure, humidity, window.color);
