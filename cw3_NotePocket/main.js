@@ -143,12 +143,7 @@ function note_edit_interface(ev){
 
 let noteStorage = localStorage.getItem("notes");
 noteStorage = noteStorage ? JSON.parse(noteStorage):{};
-const test = document.querySelectorAll(".note");
-for (let index = 0; index < noteStorage.length; index++) {
 
-    test[index].style.background = noteStorage[index].color;
-    console.log(noteStorage[index].color);
-}
 let buttonsCheck = document.querySelectorAll(".check");
 for (let index = 0; index < buttonsCheck.length; index++) {
     buttonsCheck[index].addEventListener("click",Pin);  

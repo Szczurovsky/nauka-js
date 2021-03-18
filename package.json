@@ -18,5 +18,9 @@
   "homepage": "https://github.com/Szczurovsky/nauka-js#readme",
   "devDependencies": {
     "eslint": "^7.11.0"
+  },
+  "dependencies": {
+    "react-dropdown-hook": "^1.0.1",
+    "typescript": "^4.2.3"
   }
 }
