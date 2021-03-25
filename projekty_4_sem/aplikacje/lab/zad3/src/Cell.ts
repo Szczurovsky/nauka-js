@@ -10,4 +10,12 @@ export class Cell {
     //     // to wartość -1, krzyżyk to wartość 1, a 0 (zero)
     //     // oznacza pole nieustawione.
     // }
+    cells: number;
+    boardCells: HTMLElement;
+    /**
+     *
+     */
+    constructor(cells: HTMLElement) {
+        this;
+    }
 }
