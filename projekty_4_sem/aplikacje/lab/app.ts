@@ -33,7 +33,7 @@ const tab = [...users,...admins]
 
 tab.forEach(logPerson)
 
-const filtered25 = tab.filter((ktos)=>ktos.age>25)
+const filtered25 = tab.filter((someone)=>someone.age>25)
 console.log("***************************");
 filtered25.forEach(logPerson)
     // TODO:

@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    align-content: center;
+    text-align: center;
+    max-height: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+}
+.wrapper {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-field {
+    width: 40%;
+    margin: 10px 0;
+}
+.search {
+    margin-left: -60px;
+    margin-top: 5px;
+}
