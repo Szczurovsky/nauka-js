@@ -27,8 +27,8 @@ import { Cell } from "./Cell";
 //     }
 // }
 
-export class Board {
-    constructor(size: number) {
-        this.board = size;
-    }
-}
+// export class Board {
+//     constructor(size: number) {
+//         this.board = size;
+//     }
+// }
