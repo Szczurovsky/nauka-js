@@ -18,10 +18,10 @@
   "homepage": "https://github.com/Szczurovsky/nauka-js#readme",
   "devDependencies": {
     "eslint": "^7.11.0",
-    "ts-loader": "^8.0.18",
-    "typescript": "^4.2.3",
-    "webpack": "^5.28.0",
-    "webpack-cli": "^4.5.0"
+    "ts-loader": "^8.1.0",
+    "typescript": "^4.2.4",
+    "webpack": "^5.31.0",
+    "webpack-cli": "^4.6.0"
   },
   "dependencies": {
     "react-dropdown-hook": "^1.0.1"

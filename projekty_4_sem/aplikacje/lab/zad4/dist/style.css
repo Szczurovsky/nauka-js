@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(8, 8, 8);
+    background-color: rgb(136, 70, 70);
 }
 .board {
     width: 306px;
