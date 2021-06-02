@@ -30,7 +30,7 @@ export class Cell {
                 numberOfColumn++;
             }
             rows++;
-            numberOfColumn = 0;
+            // numberOfColumn = 0;
         }
     }
 }
