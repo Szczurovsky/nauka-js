@@ -71,7 +71,14 @@ export class Game {
 
         // alert(Game.checkGameStat());
         round++;
-        console.log(Game.checkGameStat());
+        if (
+            Game.checkGameStat() == "Winner is P1" ||
+            Game.checkGameStat() == "Winner is P2"
+        ) {
+            alert(Game.checkGameStat());
+            window.location.reload(true);
+            // setInterval(window.location.reload(), 1000);
+        }
     }
     test() {
         this.getBox().forEach((box) =>

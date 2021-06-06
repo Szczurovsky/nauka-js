@@ -26,7 +26,6 @@ export class Cell {
                 column.setAttribute("data-row", zmienna);
                 column.setAttribute("data-column", zmienna1);
                 table.appendChild(column);
-                console.log("działam");
                 numberOfColumn++;
             }
             rows++;

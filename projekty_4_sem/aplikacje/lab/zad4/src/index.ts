@@ -42,20 +42,40 @@ class App {
                 gameContainer.appendChild(game.getGameElement());
             });
             list.appendChild(item);
-            console.log("snp");
         }
         menuContainer.appendChild(list);
         document.body.appendChild(menuContainer);
         document.body.appendChild(gameContainer);
     }
 }
+enum Active {
+    IsActive = "active",
+    disabled = "disabled",
+}
+function Disabled(constructorFn: Function) {
+    // constructorFn.prototype.IsActive = "disabled";
+    constructorFn.prototype.active = "disabled";
+    console.log(constructorFn.prototype.active);
+}
+// @Disabled
 class GameFactory {
+    active: string;
+    // IsActive: string;
+    // console.log(this.IsActive);
+    // if (this.IsActive == Active.IsActive)
+
     getGame(game: Games): IGame {
-        switch (game) {
-            case Games.TicTacToe:
-                return new TicTacToe();
-            default:
-                throw new Error("invalid game");
+        if (this.active !== Active.disabled) {
+            {
+                console.log(this.active);
+                switch (game) {
+                    case Games.TicTacToe:
+                        return new TicTacToe();
+                    // return this.IsActive
+                    default:
+                        throw new Error("invalid game");
+                }
+            }
         }
     }
 }
