@@ -54,9 +54,9 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
 /*!**************************!*\
   !*** ./src/tictactoe.ts ***!
   \**************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.TicTacToe = void 0;\r\n// import { Bundle } from \"./dist/bundle.js\";\r\nvar cell_1 = __webpack_require__(/*! ./cell */ \"./src/cell.ts\");\r\nvar game_1 = __webpack_require__(/*! ./game */ \"./src/game.ts\");\r\nvar TicTacToe = /** @class */ (function () {\r\n    function TicTacToe() {\r\n        this.name = \"Kółko i krzyżyk\";\r\n    }\r\n    TicTacToe.prototype.getGameElement = function () {\r\n        var div = document.createElement(\"div\");\r\n        div.className = \"board\";\r\n        document.body.appendChild(div);\r\n        var c1 = new cell_1.Cell(3);\r\n        var g1 = new game_1.Game();\r\n        c1.createTable();\r\n        g1.test();\r\n        return div;\r\n    };\r\n    return TicTacToe;\r\n}());\r\nexports.TicTacToe = TicTacToe;\r\n\n\n//# sourceURL=webpack:///./src/tictactoe.ts?");
+eval("\r\nvar __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {\r\n    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;\r\n    if (typeof Reflect === \"object\" && typeof Reflect.decorate === \"function\") r = Reflect.decorate(decorators, target, key, desc);\r\n    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;\r\n    return c > 3 && r && Object.defineProperty(target, key, r), r;\r\n};\r\nvar __metadata = (this && this.__metadata) || function (k, v) {\r\n    if (typeof Reflect === \"object\" && typeof Reflect.metadata === \"function\") return Reflect.metadata(k, v);\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.TicTacToe = void 0;\r\n// import { Bundle } from \"./dist/bundle.js\";\r\nvar cell_1 = __webpack_require__(/*! ./cell */ \"./src/cell.ts\");\r\nvar game_1 = __webpack_require__(/*! ./game */ \"./src/game.ts\");\r\nfunction Watch(target, propKey, descriptor) {\r\n    var originalFn = target[propKey];\r\n    descriptor.value = function (param) {\r\n        console.log(\"uruchomiono kolko i krzyzyk\");\r\n        return originalFn.call(this);\r\n    };\r\n}\r\nvar TicTacToe = /** @class */ (function () {\r\n    function TicTacToe() {\r\n        this.name = \"Kółko i krzyżyk\";\r\n    }\r\n    TicTacToe.prototype.getGameElement = function () {\r\n        console.log(this.wyswietl);\r\n        var div = document.createElement(\"div\");\r\n        div.className = \"board\";\r\n        document.body.appendChild(div);\r\n        var c1 = new cell_1.Cell(3);\r\n        var g1 = new game_1.Game();\r\n        c1.createTable();\r\n        g1.test();\r\n        return div;\r\n    };\r\n    __decorate([\r\n        Watch,\r\n        __metadata(\"design:type\", Function),\r\n        __metadata(\"design:paramtypes\", []),\r\n        __metadata(\"design:returntype\", HTMLElement)\r\n    ], TicTacToe.prototype, \"getGameElement\", null);\r\n    return TicTacToe;\r\n}());\r\nexports.TicTacToe = TicTacToe;\r\n\n\n//# sourceURL=webpack:///./src/tictactoe.ts?");
 
 /***/ })
 
@@ -80,7 +80,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
