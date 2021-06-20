@@ -1,18 +1,18 @@
 let round = 1;
 const Board1 = [
-    ["0", "1", "2"],
-    ["3", "4", "5"],
-    ["6", "7", "8"],
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
 ];
 const combinations = [
-    [3, 5, 7],
-    [1, 5, 9],
-    [3, 6, 9],
+    [2, 4, 6],
+    [0, 4, 8],
     [2, 5, 8],
     [1, 4, 7],
-    [7, 8, 9],
-    [4, 5, 6],
-    [1, 2, 3],
+    [0, 3, 6],
+    [6, 7, 8],
+    [3, 4, 5],
+    [0, 1, 2],
 ];
 export class Game {
     static Player1: string;
@@ -27,7 +27,7 @@ export class Game {
     public static checkGameStat() {
         let winner = null;
         const result = Board1.reduce((total, row) => total.concat(row));
-
+        console.log(result);
         let moves = {
             "fa-times": [],
             "fa-circle": [],
@@ -35,17 +35,18 @@ export class Game {
         result.forEach((field, index) =>
             moves[field] ? moves[field].push(index) : null
         );
+        console.log(moves);
         combinations.forEach((combination) => {
             if (
                 combination.every(
-                    (index) => moves[this.Player1].indexOf(index) > -1
+                    (index) => moves[this.Player2].indexOf(index) > -1
                 )
             ) {
                 winner = "Winner is P1";
             }
             if (
                 combination.every(
-                    (index) => moves[this.Player2].indexOf(index) > -1
+                    (index) => moves[this.Player1].indexOf(index) > -1
                 )
             ) {
                 winner = "Winner is P2";
@@ -67,9 +68,17 @@ export class Game {
         console.log("po");
         event.target.classList.add(turn);
         Board1[row][column] = turn;
-        console.log(Game.checkGameStat());
+
         // alert(Game.checkGameStat());
         round++;
+        if (
+            Game.checkGameStat() == "Winner is P1" ||
+            Game.checkGameStat() == "Winner is P2"
+        ) {
+            alert(Game.checkGameStat());
+            window.location.reload(true);
+            // setInterval(window.location.reload(), 1000);
+        }
     }
     test() {
         this.getBox().forEach((box) =>

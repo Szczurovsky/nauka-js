@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+:root {
+  --bodyColor: rgb(136, 70, 70);
+  --boardColor: #4a6ecf;
+  --borderColor: rgb(15, 224, 15);
+  --boxColor: rgb(94, 40, 40);
+  --hoverColor: #e91212;
+  --fontColor: black;
+}
+
+[orangeTheme="orange"] {
+  --bodyColor: rgb(54, 54, 54);
+  --fontColor: white;
+  --boardColor: rgb(136, 4, 4);
+  --boxColor: rgb(122, 85, 16);
+  --hoverColor: rgb(34, 56, 121);
+}
+
+body {
+  color: var(--fontColor);
+  font-family: sans-serif;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--bodyColor);
+}
+
+body .board {
+  width: 306px;
+  background: var(--boardColor);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: (100px)[3];
+      grid-template-rows: repeat(3, 100px);
+  grid-gap: 3px;
+  display: -ms-grid;
+  display: grid;
+  border: 3px solid var(--borderColor);
+  cursor: pointer;
+  margin: 100px;
+}
+
+body .box {
+  background: var(--boxColor);
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+  color: #222;
+}
+
+body .box:hover {
+  background: var(--hoverColor);
+}
+
+body .switcher {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+}
+/*# sourceMappingURL=styles.css.map */

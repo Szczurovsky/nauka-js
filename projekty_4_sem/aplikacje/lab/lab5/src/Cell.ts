@@ -1,19 +1,4 @@
 export class Cell {
-    // cellValue: number;
-    // htmlElement: HTMLElement;
-    // constructor(cell: HTMLElement) {
-    //     this.htmlElement = cell;
-    // }
-    // setCellValue(value: number) {
-    //     // TODO: napisz samemu metodę, która ustawia w
-    //     // tabeli kółko i krzyżyk. Możesz przyjąć, że kółko
-    //     // to wartość -1, krzyżyk to wartość 1, a 0 (zero)
-    //     // oznacza pole nieustawione.
-    // }
-
-    /**
-     *
-     */
     numberColumn: Number;
     constructor(numberColumn: Number) {
         this.numberColumn = numberColumn;
@@ -41,12 +26,37 @@ export class Cell {
                 column.setAttribute("data-row", zmienna);
                 column.setAttribute("data-column", zmienna1);
                 table.appendChild(column);
-                console.log("działam");
                 numberOfColumn++;
             }
             rows++;
-            numberOfColumn = 0;
+            // numberOfColumn = 0;
         }
     }
 }
 // }
+class Czlowiek {
+    imie: string;
+    nazwisko: string;
+
+    constructor(imie: string, nazwisko: string) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+    }
+}
+
+class Calc {
+    a: number;
+    b: number;
+    constructor(a: number, b: number) {
+        this.a = a;
+        this.b = b;
+    }
+
+    Sum(): number {
+        return this.a + this.b;
+    }
+}
+const calkulator = new Calc(1, 4);
+calkulator.Sum();
+
+for (let i = 1; i <= 200; i + 2) {}

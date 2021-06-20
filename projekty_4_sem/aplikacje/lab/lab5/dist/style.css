@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(8, 8, 8);
+    background-color: rgb(136, 70, 70);
 }
 .board {
     width: 306px;
@@ -25,10 +25,10 @@ body {
 .box {
     background: rgb(94, 40, 40);
     display: flex !important;
-    /* display: flex; */
+
     justify-content: center;
     align-items: center;
-    /* text-align: center; */
+
     font-size: 2rem;
     color: #222;
 }
